@@ -1,11 +1,29 @@
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import Particles from "@tsparticles/react";
 
+import type { Engine, ISourceOptions } from "@tsparticles/engine";
+
+import { loadSlim } from "@tsparticles/slim";
+
 export default function ParticlesBackground() {
-  const options = useMemo(
+  const [init, setInit] = useState(false);
+
+  useEffect(() => {
+    const initParticles = async () => {
+      const engine = {} as Engine;
+
+      await loadSlim(engine);
+
+      setInit(true);
+    };
+
+    initParticles();
+  }, []);
+
+  const options: ISourceOptions = useMemo(
     () => ({
       background: {
         color: {
@@ -17,21 +35,25 @@ export default function ParticlesBackground() {
 
       particles: {
         color: {
-          value: ["#f97316", "#fb923c", "#fdba74"],
+          value: "#f97316",
         },
 
         links: {
-          enable: false,
+          color: "#f97316",
+          distance: 150,
+          enable: true,
+          opacity: 0.15,
+          width: 1,
         },
 
         move: {
           direction: "none",
           enable: true,
           outModes: {
-            default: "out",
+            default: "bounce",
           },
-          random: true,
-          speed: 0.4,
+          random: false,
+          speed: 1,
           straight: false,
         },
 
@@ -43,10 +65,7 @@ export default function ParticlesBackground() {
         },
 
         opacity: {
-          value: {
-            min: 0.1,
-            max: 0.4,
-          },
+          value: 0.2,
         },
 
         shape: {
@@ -66,11 +85,15 @@ export default function ParticlesBackground() {
     [],
   );
 
+  if (!init) {
+    return null;
+  }
+
   return (
     <Particles
       id="tsparticles"
-      className="absolute inset-0 z-0"
       options={options}
+      className="absolute inset-0 z-0"
     />
   );
 }
