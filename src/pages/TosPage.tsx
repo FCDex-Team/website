@@ -1,13 +1,12 @@
 import Navbar from "@/components/Navbar";
+import { DISCORD_URL } from "@/lib/constants";
 
 export default function TosPage() {
   return (
     <main className="min-h-screen bg-black text-white">
       <Navbar />
 
-      {/* Hero */}
       <section className="relative overflow-hidden border-b border-white/5 px-6 pb-20 pt-40">
-        {/* Glow */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(249,115,22,0.12),transparent_45%)]" />
 
         <div className="relative z-10 mx-auto max-w-5xl">
@@ -27,10 +26,8 @@ export default function TosPage() {
         </div>
       </section>
 
-      {/* Content */}
       <section className="px-6 py-20">
         <div className="mx-auto max-w-5xl space-y-16">
-          {/* Section */}
           <div>
             <h2 className="font-bebas text-5xl uppercase tracking-wide text-orange-400">
               Usage Agreement
@@ -43,7 +40,6 @@ export default function TosPage() {
             </p>
           </div>
 
-          {/* Section */}
           <div>
             <h2 className="font-bebas text-5xl uppercase tracking-wide text-orange-400">
               User Conduct
@@ -87,7 +83,6 @@ export default function TosPage() {
             </div>
           </div>
 
-          {/* Section */}
           <div>
             <h2 className="font-bebas text-5xl uppercase tracking-wide text-orange-400">
               Trading Rules
@@ -100,7 +95,6 @@ export default function TosPage() {
             </p>
           </div>
 
-          {/* Section */}
           <div>
             <h2 className="font-bebas text-5xl uppercase tracking-wide text-orange-400">
               Privacy & Data
@@ -113,7 +107,6 @@ export default function TosPage() {
             </p>
           </div>
 
-          {/* Section */}
           <div>
             <h2 className="font-bebas text-5xl uppercase tracking-wide text-orange-400">
               Moderation
@@ -126,7 +119,6 @@ export default function TosPage() {
             </p>
           </div>
 
-          {/* Section */}
           <div>
             <h2 className="font-bebas text-5xl uppercase tracking-wide text-orange-400">
               Contact
@@ -138,8 +130,9 @@ export default function TosPage() {
             </p>
 
             <a
-              href="https://discord.gg/fcdex"
+              href={DISCORD_URL}
               target="_blank"
+              rel="noopener noreferrer"
               className="mt-8 inline-flex rounded-2xl bg-orange-500 px-8 py-4 text-lg font-semibold text-black transition hover:scale-105 hover:bg-orange-400"
             >
               Join Discord
