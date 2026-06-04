@@ -2,6 +2,8 @@ import path from "node:path";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 
+import { previewOptions, serverOptions } from "./production";
+
 export default defineConfig({
   plugins: [react()],
   resolve: {
@@ -9,4 +11,6 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  server: serverOptions,
+  preview: previewOptions,
 });

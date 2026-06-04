@@ -5,8 +5,10 @@
   --animate-shine-fast: shine 4s linear infinite;
   --animate-float: float 3s ease-in-out infinite;
   --animate-page-enter: page-enter 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  --animate-dropdown-in: dropdown-in 0.22s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  --animate-dropdown-item: dropdown-item 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  --animate-dropdown-in: dropdown-in 0.22s cubic-bezier(0.22, 1, 0.36, 1)
+    forwards;
+  --animate-dropdown-item: dropdown-item 0.28s cubic-bezier(0.22, 1, 0.36, 1)
+    forwards;
 }
 
 @keyframes shine {

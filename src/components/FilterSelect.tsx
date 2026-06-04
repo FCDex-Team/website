@@ -72,27 +72,19 @@ export default function FilterSelect({
         <span>{selected?.label ?? "Select"}</span>
 
         <span
-          className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border transition-all duration-300 ${
+          className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border text-lg leading-none transition-all duration-300 ${
             open
               ? "rotate-180 border-orange-500/40 bg-orange-500/20 text-orange-300"
               : "border-white/10 bg-black/40 text-zinc-400"
           }`}
           aria-hidden
         >
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            className="h-4 w-4"
-          >
-            <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+          ▾
         </span>
       </button>
 
       {open && (
-        <ul
+        <div
           id={listboxId}
           role="listbox"
           aria-label={label}
@@ -102,7 +94,7 @@ export default function FilterSelect({
             const isSelected = option.value === value;
 
             return (
-              <li key={option.value} role="presentation">
+              <div key={option.value}>
                 <button
                   type="button"
                   role="option"
@@ -125,10 +117,10 @@ export default function FilterSelect({
                     </span>
                   )}
                 </button>
-              </li>
+              </div>
             );
           })}
-        </ul>
+        </div>
       )}
     </div>
   );
