@@ -25,6 +25,12 @@ export default function CollectionPage() {
 
   const rarity = getRarityStyles(collection.tier, collection.obtainable);
 
+  const statCardClass = `min-w-0 rounded-2xl border bg-white/5 p-4 backdrop-blur-xl sm:rounded-3xl sm:p-6 ${rarity.border}`;
+  const statLabelClass =
+    "text-xs font-medium uppercase tracking-widest text-zinc-500";
+  const statValueClass =
+    "mt-2 min-w-0 text-pretty text-xl font-bold leading-snug break-words sm:mt-3 sm:text-2xl lg:text-3xl";
+
   return (
     <PageTransition>
       <main className="min-h-screen overflow-hidden bg-black text-white">
@@ -39,8 +45,8 @@ export default function CollectionPage() {
             <div className="h-full w-full bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:80px_80px]" />
           </div>
 
-          <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-20 md:grid-cols-2">
-            <div>
+          <div className="relative z-10 mx-auto grid min-w-0 max-w-7xl items-center gap-20 md:grid-cols-2">
+            <div className="min-w-0">
               <div className="mb-8 flex flex-wrap gap-3">
                 <div
                   className={`rounded-full px-5 py-2 text-xs font-bold uppercase tracking-[0.35em] ${rarity.badge}`}
@@ -59,57 +65,33 @@ export default function CollectionPage() {
                 </div>
               </div>
 
-              <h1 className="font-bebas text-7xl uppercase leading-none tracking-wide md:text-9xl">
+              <h1 className="font-bebas text-5xl uppercase leading-none tracking-wide sm:text-7xl md:text-9xl">
                 {collection.title}
               </h1>
 
-              <p className="mt-8 max-w-2xl text-lg leading-relaxed text-zinc-400">
+              <p className="mt-6 max-w-2xl text-base leading-relaxed text-zinc-400 sm:mt-8 sm:text-lg">
                 {collection.description}
               </p>
 
-              <div className="mt-12 grid grid-cols-2 gap-5">
-                <div
-                  className={`rounded-3xl border bg-white/5 p-6 backdrop-blur-xl ${rarity.border}`}
-                >
-                  <p className="text-sm uppercase tracking-widest text-zinc-500">
-                    Club
-                  </p>
-
-                  <h3 className="mt-3 text-3xl font-bold">{collection.club}</h3>
+              <div className="mt-8 grid min-w-0 grid-cols-2 gap-3 sm:mt-12 sm:gap-5">
+                <div className={statCardClass}>
+                  <p className={statLabelClass}>Club</p>
+                  <h3 className={statValueClass}>{collection.club}</h3>
                 </div>
 
-                <div
-                  className={`rounded-3xl border bg-white/5 p-6 backdrop-blur-xl ${rarity.border}`}
-                >
-                  <p className="text-sm uppercase tracking-widest text-zinc-500">
-                    League
-                  </p>
-
-                  <h3 className="mt-3 text-3xl font-bold">
-                    {collection.league}
-                  </h3>
+                <div className={statCardClass}>
+                  <p className={statLabelClass}>League</p>
+                  <h3 className={statValueClass}>{collection.league}</h3>
                 </div>
 
-                <div
-                  className={`rounded-3xl border bg-white/5 p-6 backdrop-blur-xl ${rarity.border}`}
-                >
-                  <p className="text-sm uppercase tracking-widest text-zinc-500">
-                    Founded
-                  </p>
-
-                  <h3 className="mt-3 text-3xl font-bold">
-                    {collection.founded}
-                  </h3>
+                <div className={statCardClass}>
+                  <p className={statLabelClass}>Founded</p>
+                  <h3 className={statValueClass}>{collection.founded}</h3>
                 </div>
 
-                <div
-                  className={`rounded-3xl border bg-white/5 p-6 backdrop-blur-xl ${rarity.border} ${rarity.glow}`}
-                >
-                  <p className="text-sm uppercase tracking-widest text-zinc-500">
-                    Trophies
-                  </p>
-
-                  <h3 className="mt-3 text-3xl font-bold text-orange-400">
+                <div className={`${statCardClass} ${rarity.glow}`}>
+                  <p className={statLabelClass}>Trophies</p>
+                  <h3 className={`${statValueClass} text-orange-400`}>
                     {collection.trophies}
                   </h3>
                 </div>
