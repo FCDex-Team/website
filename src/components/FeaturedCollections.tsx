@@ -1,5 +1,4 @@
-import Image from "next/image";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 
 import { collections } from "@/data/collections";
 import { getRarityStyles } from "@/lib/rarity";
@@ -42,12 +41,12 @@ export default function FeaturedCollections() {
 
                 {/* Exclusive Shine */}
                 {!collection.obtainable && (
-                  <div className="absolute inset-0 bg-[linear-gradient(120deg,transparent_20%,rgba(255,255,255,0.12)_50%,transparent_80%)] bg-[length:250%_250%] animate-[shine_5s_linear_infinite]" />
+                  <div className="absolute inset-0 bg-[linear-gradient(120deg,transparent_20%,rgba(255,255,255,0.12)_50%,transparent_80%)] bg-[length:250%_250%] animate-shine" />
                 )}
 
                 {/* Image */}
                 <div className="relative mb-10 flex h-72 items-center justify-center overflow-hidden rounded-2xl">
-                  <Image
+                  <img
                     src={collection.image}
                     alt={collection.title}
                     width={260}
@@ -112,7 +111,7 @@ export default function FeaturedCollections() {
 
                   {/* Button */}
                   <Link
-                    href={`/collections/${collection.slug}`}
+                    to={`/collections/${collection.slug}`}
                     className="mt-8 inline-flex rounded-xl border border-white/10 bg-black/30 px-5 py-3 text-sm font-semibold backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:bg-white/10"
                   >
                     View Collection

@@ -1,12 +1,20 @@
-"use client";
-
 import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 
-import Image from "next/image";
-import Link from "next/link";
-
+import FilterSelect from "@/components/FilterSelect";
 import { collections } from "@/data/collections";
 import { getRarityStyles } from "@/lib/rarity";
+
+const filterOptions = [
+  { value: "all", label: "All Collections" },
+  { value: "obtainable", label: "Obtainable" },
+  { value: "exclusive", label: "Exclusive" },
+] as const;
+
+const sortOptions = [
+  { value: "rarity", label: "Highest Rarity" },
+  { value: "alphabetical", label: "Alphabetical" },
+] as const;
 
 export default function CollectionDatabase() {
   const [search, setSearch] = useState("");
@@ -60,33 +68,35 @@ export default function CollectionDatabase() {
         </div>
 
         {/* Controls */}
-        <div className="mb-12 flex flex-col gap-4 lg:flex-row">
-          <input
-            type="text"
-            placeholder="Search collections..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="h-14 flex-1 rounded-2xl border border-white/10 bg-white/5 px-5 text-white outline-none backdrop-blur-xl transition focus:border-orange-500/40"
+        <div className="mb-12 flex flex-col gap-5 lg:flex-row lg:items-stretch">
+          <div className="w-full lg:flex-[2]">
+            <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.25em] text-zinc-500">
+              Search
+            </span>
+            <input
+              type="text"
+              placeholder="Search collections..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="min-h-[4.5rem] w-full rounded-2xl border border-white/10 bg-white/5 px-6 py-4 text-lg text-white placeholder:text-zinc-500 outline-none backdrop-blur-xl transition focus:border-orange-500/40 focus:ring-2 focus:ring-orange-500/20"
+            />
+          </div>
+
+          <FilterSelect
+            label="Filter"
+            value={filter}
+            options={[...filterOptions]}
+            onChange={setFilter}
+            className="w-full lg:min-w-[13rem] lg:flex-1"
           />
 
-          <select
-            value={filter}
-            onChange={(e) => setFilter(e.target.value)}
-            className="h-14 rounded-2xl border border-white/10 bg-black px-5 text-white outline-none"
-          >
-            <option value="all">All</option>
-            <option value="obtainable">Obtainable</option>
-            <option value="exclusive">Exclusive</option>
-          </select>
-
-          <select
+          <FilterSelect
+            label="Sort by"
             value={sort}
-            onChange={(e) => setSort(e.target.value)}
-            className="h-14 rounded-2xl border border-white/10 bg-black px-5 text-white outline-none"
-          >
-            <option value="rarity">Highest Rarity</option>
-            <option value="alphabetical">Alphabetical</option>
-          </select>
+            options={[...sortOptions]}
+            onChange={setSort}
+            className="w-full lg:min-w-[13rem] lg:flex-1"
+          />
         </div>
 
         {/* Grid */}
@@ -103,11 +113,11 @@ export default function CollectionDatabase() {
                 className={`group relative overflow-hidden rounded-3xl border bg-gradient-to-br p-6 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02] ${rarity.border} ${rarity.glow} ${rarity.gradient}`}
               >
                 {!collection.obtainable && (
-                  <div className="absolute inset-0 bg-[linear-gradient(120deg,transparent_20%,rgba(255,255,255,0.12)_50%,transparent_80%)] bg-[length:250%_250%] animate-[shine_5s_linear_infinite]" />
+                  <div className="absolute inset-0 bg-[linear-gradient(120deg,transparent_20%,rgba(255,255,255,0.12)_50%,transparent_80%)] bg-[length:250%_250%] animate-shine" />
                 )}
 
                 <div className="relative mb-6 flex h-56 items-center justify-center overflow-hidden rounded-2xl">
-                  <Image
+                  <img
                     src={collection.image}
                     alt={collection.title}
                     width={220}
@@ -142,7 +152,7 @@ export default function CollectionDatabase() {
                 <p className="mt-2 text-zinc-300">{collection.club}</p>
 
                 <Link
-                  href={`/collections/${collection.slug}`}
+                  to={`/collections/${collection.slug}`}
                   className="mt-6 inline-flex rounded-xl border border-white/10 bg-black/30 px-4 py-2 text-sm font-semibold backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:bg-white/10"
                 >
                   View Collection

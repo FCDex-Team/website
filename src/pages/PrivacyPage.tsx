@@ -1,13 +1,12 @@
 import Navbar from "@/components/Navbar";
+import { DISCORD_URL } from "@/lib/constants";
 
 export default function PrivacyPage() {
   return (
     <main className="min-h-screen bg-black text-white">
       <Navbar />
 
-      {/* Hero */}
       <section className="relative overflow-hidden border-b border-white/5 px-6 pb-20 pt-40">
-        {/* Glow */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(249,115,22,0.12),transparent_45%)]" />
 
         <div className="relative z-10 mx-auto max-w-5xl">
@@ -26,10 +25,8 @@ export default function PrivacyPage() {
         </div>
       </section>
 
-      {/* Content */}
       <section className="px-6 py-20">
         <div className="mx-auto max-w-5xl space-y-16">
-          {/* Section */}
           <div>
             <h2 className="font-bebas text-5xl uppercase tracking-wide text-orange-400">
               Data Collection
@@ -42,7 +39,6 @@ export default function PrivacyPage() {
             </p>
           </div>
 
-          {/* Cards */}
           <div className="grid gap-6 md:grid-cols-2">
             <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
               <h3 className="text-2xl font-semibold text-white">User IDs</h3>
@@ -84,7 +80,6 @@ export default function PrivacyPage() {
             </div>
           </div>
 
-          {/* Section */}
           <div>
             <h2 className="font-bebas text-5xl uppercase tracking-wide text-orange-400">
               Data Storage
@@ -97,7 +92,6 @@ export default function PrivacyPage() {
             </p>
           </div>
 
-          {/* Section */}
           <div>
             <h2 className="font-bebas text-5xl uppercase tracking-wide text-orange-400">
               Access To Data
@@ -110,7 +104,6 @@ export default function PrivacyPage() {
             </p>
           </div>
 
-          {/* Section */}
           <div>
             <h2 className="font-bebas text-5xl uppercase tracking-wide text-orange-400">
               Your Rights
@@ -122,7 +115,6 @@ export default function PrivacyPage() {
             </p>
           </div>
 
-          {/* Section */}
           <div>
             <h2 className="font-bebas text-5xl uppercase tracking-wide text-orange-400">
               Contact
@@ -134,8 +126,9 @@ export default function PrivacyPage() {
             </p>
 
             <a
-              href="https://discord.gg/fcdex"
+              href={DISCORD_URL}
               target="_blank"
+              rel="noopener noreferrer"
               className="mt-8 inline-flex rounded-2xl bg-orange-500 px-8 py-4 text-lg font-semibold text-black transition hover:scale-105 hover:bg-orange-400"
             >
               Join Discord
